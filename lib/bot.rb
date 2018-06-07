@@ -25,9 +25,9 @@ class Bot
   end
 
   def stop
-    bot = Telegram::Bot::Api.new(@token)
+    api = Telegram::Bot::Client.new(@token).api
     @logger.debug "Delete webhook for #{@token}..."
-    @logger.debug { bot.delete_webhook }
+    @logger.debug { api.delete_webhook }
   end
 
   def development_bot
@@ -41,11 +41,11 @@ class Bot
   end
 
   def production_bot
-    bot = Telegram::Bot::Api.new(@token)
+    api = Telegram::Bot::Client.new(@token).api
     cert = File.open(@config.cert_file)
     url = @config.route(@token)
     @logger.debug "Setting webhook for #{@token}..."
-    @logger.debug { bot.set_webhook(url: url, certificate: cert) }
+    @logger.debug { api.set_webhook(url: url, certificate: cert) }
   end
 
   def development_handler
