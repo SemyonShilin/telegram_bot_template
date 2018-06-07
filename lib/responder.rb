@@ -1,3 +1,6 @@
+require_relative '../lib/sender'
+require_relative '../lib/parser'
+
 class MessageResponder
   attr_reader :message, :bot, :listener, :kind, :token
 
