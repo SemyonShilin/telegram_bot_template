@@ -19,3 +19,8 @@ def stop_bot(pid, token, listener)
   $logger.debug 'stop bot'
   Bot.new(pid: pid, token: token, listener: listener).stop
 end
+
+def message(pid, token, message, listener)
+  Bot.new(pid: pid, token: token, listener: listener, message: message).forward
+end
+
