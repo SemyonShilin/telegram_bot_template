@@ -14,7 +14,7 @@ class Bot
     @pid = pid
     @token = token
     @listener = listener
-    @message = options[:message]
+    @message = JSON.parse(options[:message])
   end
 
   def bot
@@ -63,7 +63,6 @@ class Bot
   def production_handler; end
 
   def forward
-    @logger.debug "#{@message.dig('from', 'first_name')} (chat_id - #{@message.dig('from', 'id')}) : #{@message}"
     bot = Telegram::Bot::Client.new(@token)
     options = { bot: bot, message: @message, listener: @listener, kind: :supervisor}
     MessageResponder.new(options).user
