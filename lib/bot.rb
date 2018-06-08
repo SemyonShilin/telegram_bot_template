@@ -42,7 +42,7 @@ class Bot
 
   def production_bot
     api = Telegram::Bot::Client.new(@token).api
-    cert = File.open(@config.cert_file)
+    cert = Faraday::UploadIO.new(config.cert_file, 'application/x-pem-file')
     url = @config.route(@token)
     @logger.debug "Setting webhook for #{@token}..."
     @logger.debug { api.set_webhook(url: url, certificate: cert) }

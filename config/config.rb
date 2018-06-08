@@ -17,7 +17,7 @@ class Configurator
     Logger.new MultiLogger.new(STDERR, File.open("#{@env}.telegram.log", 'a'))
   end
 
-  def route(token)
-    "#{@host}/telegram/#{token}/"
+  def route(uid)
+    "#{@host}/webhooks/telegram/#{uid}/"
   end
 end
