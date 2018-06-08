@@ -14,7 +14,7 @@ class Bot
     @pid = pid
     @token = token
     @listener = listener
-    @message = JSON.parse(options[:message])
+    @message = JSON.parse(options[:message]) if options[:message]
   end
 
   def bot
