@@ -64,7 +64,7 @@ class Bot
 
   def forward
     bot = Telegram::Bot::Client.new(@token)
-    options = { bot: bot, message: @message, listener: @listener, kind: :supervisor}
-    MessageResponder.new(options).user
+    options = { bot: bot, message: @message, listener: @listener, token: @token, kind: :user}
+    MessageResponder.new(options).respond
   end
 end
